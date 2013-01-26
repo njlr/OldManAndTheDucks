@@ -4,8 +4,11 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 import nlib.components.BasicComponentRenderable;
 
@@ -24,6 +27,16 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 	
 	private int timeTillNextSequence;
 	
+	private Animation animationRed;
+	private Animation animationBlue;
+	private Animation animationYellow;
+	private Animation animationGreen;
+	
+	private Animation animationRedBox;
+	private Animation animationBlueBox;
+	private Animation animationYellowBox;
+	private Animation animationGreenBox;
+	
 	public BeatManager(long id, EventBus eventBus) {
 		
 		super(id);
@@ -40,6 +53,16 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		super.init(gameContainer);
 		
 		this.timeTillNextSequence = Constants.TIME_PER_SEQUENCE;
+		
+		this.animationRed = new Animation(new SpriteSheet("gfx/Red.png", 96, 96), 495);
+		this.animationBlue = new Animation(new SpriteSheet("gfx/Blue.png", 96, 96), 500);
+		this.animationYellow = new Animation(new SpriteSheet("gfx/Yellow.png", 96, 96), 505);
+		this.animationGreen = new Animation(new SpriteSheet("gfx/Green.png", 96, 96), 510);
+		
+		this.animationRedBox = new Animation(new SpriteSheet("gfx/RedBox.png", 96, 96), 496);
+		this.animationBlueBox = new Animation(new SpriteSheet("gfx/BlueBox.png", 96, 96), 501);
+		this.animationYellowBox = new Animation(new SpriteSheet("gfx/YellowBox.png", 96, 96), 506);
+		this.animationGreenBox = new Animation(new SpriteSheet("gfx/GreenBox.png", 96, 96), 511);
 	}
 	
 	@Override
@@ -60,6 +83,25 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 			
 			this.nextSequence();
 		}
+	}
+	
+	@Override
+	public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
+		
+		super.render(gameContainer, graphics);
+		
+		int w = gameContainer.getWidth();
+		int h = gameContainer.getHeight();
+		
+		// Red
+		graphics.drawAnimation(this.animationRedBox, w - 128f * 2f, h - 128f);
+		
+		if (this.beatsRequired.contains(Beat.RED)) {
+			
+			graphics.drawAnimation(this.animationRed, w - 128f * 2f, h - 128f);
+		}
+		
+		
 	}
 	
 	private void nextSequence() {
