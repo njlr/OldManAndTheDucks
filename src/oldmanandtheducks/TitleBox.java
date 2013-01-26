@@ -112,7 +112,7 @@ public strictfp final class TitleBox extends BasicComponentRenderable implements
 		float xx = gameContainer.getScreenWidth() / 2f - w * 2f;
 		float yy = y + 512f;
 		
-		float hh = 48f;
+		float hh = 96f;
 		
 		graphics.drawAnimation(this.animationRed, xx, yy);
 		graphics.drawAnimation(this.animationRedControl, xx, yy + hh);

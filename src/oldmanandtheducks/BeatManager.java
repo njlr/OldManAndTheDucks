@@ -45,6 +45,15 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 	private boolean wrongYellow;
 	private boolean wrongGreen;
 	
+	private Animation animationBarBackground;
+	
+	private Animation animationBar1;
+	private Animation animationBar2;
+	private Animation animationBar3;
+	private Animation animationBar4;
+	private Animation animationBar5;
+	private Animation animationBar6;
+	
 	private boolean isRunning;
 	
 	public BeatManager(long id, EventBus eventBus) {
@@ -82,6 +91,8 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		this.wrongBlue = false;
 		this.wrongYellow = false;
 		this.wrongGreen = false;
+		
+		this.animationBarBackground = new Animation(new SpriteSheet("", tw, th), 100);
 		
 		this.isRunning = true;
 	}
