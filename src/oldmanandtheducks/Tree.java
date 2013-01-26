@@ -30,6 +30,6 @@ public strictfp final class Tree extends BasicComponentRenderable {
 		
 		super.render(gameContainer, graphics);
 		
-		graphics.drawAnimation(this.animation, 700, 100);
+		graphics.drawAnimation(this.animation, 780, -40);
 	}
 }

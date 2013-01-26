@@ -193,6 +193,7 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 			graphics.drawAnimation(this.animationCross, x, y);
 		}
 		
+		/*
 		// Bar
 		float bx = c - 256f;
 		float by = gameContainer.getScreenHeight() - 256f;
@@ -238,7 +239,7 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 			graphics.drawAnimation(this.animationBar1, bx, by);
 			
 			break;
-		}
+		}*/
 	}
 	
 	@Override

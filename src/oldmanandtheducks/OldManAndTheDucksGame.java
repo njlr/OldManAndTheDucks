@@ -29,13 +29,21 @@ public strictfp final class OldManAndTheDucksGame extends BasicGame {
 	public void init(GameContainer gameContainer) throws SlickException {
 		
 		this.componentManager.addComponent(
+				new Sky(this.componentManager.takeId()));
+		
+		this.componentManager.addComponent(
+				new Pond(this.componentManager.takeId()));
+		
+		this.componentManager.addComponent(
 				new Tree(this.componentManager.takeId()));
 		
 		this.componentManager.addComponent(
 				new Sun(this.componentManager.takeId()));
 		
 		this.componentManager.addComponent(
-				new TitleBox(this.componentManager.takeId(), this.componentManager.getEventBus()));
+				new TitleBox(
+						this.componentManager.takeId(), 
+						this.componentManager.getEventBus()));
 		
 		this.componentManager.init(gameContainer);
 	}
