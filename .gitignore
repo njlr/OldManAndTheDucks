@@ -1,5 +1,7 @@
 *.class
 
+gfx/raw
+
 # Package Files #
 *.jar
 *.war
