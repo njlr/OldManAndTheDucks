@@ -11,6 +11,7 @@ import nlib.components.BasicComponentRenderable;
 public strictfp final class Sun extends BasicComponentRenderable {
 	
 	private Animation animation;
+	private Animation animationBeams;
 	
 	public Sun(long id) {
 		
@@ -23,6 +24,7 @@ public strictfp final class Sun extends BasicComponentRenderable {
 		super.init(gameContainer);
 		
 		this.animation = new Animation(new SpriteSheet("gfx/Sun.png", 256, 256), 100);
+		this.animation = new Animation(new SpriteSheet("gfx/Beams.png", 256, 256), 100);
 	}
 	
 	@Override
@@ -31,5 +33,6 @@ public strictfp final class Sun extends BasicComponentRenderable {
 		super.render(gameContainer, graphics);
 		
 		graphics.drawAnimation(this.animation, 0f, 0f);
+		graphics.drawAnimation(this.animationBeams, 0f, 0f);
 	}
 }
