@@ -92,7 +92,14 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		this.wrongYellow = false;
 		this.wrongGreen = false;
 		
-		this.animationBarBackground = new Animation(new SpriteSheet("", tw, th), 100);
+		this.animationBarBackground = new Animation(new SpriteSheet("gfx/BarBackground.png", 512, 128), 100);
+		
+		this.animationBar1 = new Animation(new SpriteSheet("gfx/Bar1.png", 512, 128), 100);
+		this.animationBar2 = new Animation(new SpriteSheet("gfx/Bar2.png", 512, 128), 100);
+		this.animationBar3 = new Animation(new SpriteSheet("gfx/Bar3.png", 512, 128), 100);
+		this.animationBar4 = new Animation(new SpriteSheet("gfx/Bar4.png", 512, 128), 100);
+		this.animationBar5 = new Animation(new SpriteSheet("gfx/Bar5.png", 512, 128), 100);
+		this.animationBar6 = new Animation(new SpriteSheet("gfx/Bar6.png", 512, 128), 100);
 		
 		this.isRunning = true;
 	}
@@ -127,7 +134,9 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		
 		float w = 128f;
 		
-		float x = gameContainer.getScreenWidth() / 2f - w * 2f;
+		float c = gameContainer.getScreenWidth() / 2f;
+		
+		float x = c - w * 2f;
 		float y = gameContainer.getScreenHeight() - 128f;
 		
 		// Red
@@ -182,6 +191,53 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		else if (this.wrongGreen) {
 			
 			graphics.drawAnimation(this.animationCross, x, y);
+		}
+		
+		// Bar
+		float bx = c - 256f;
+		float by = gameContainer.getScreenHeight() - 256f;
+		
+		graphics.drawAnimation(this.animationBarBackground, bx, by);
+		
+		int f = (this.timeTillNextSequence * 6) / Constants.TIME_PER_SEQUENCE;
+		
+		switch (f) {
+		
+		case 1:
+			
+			graphics.drawAnimation(this.animationBar6, bx, by);
+			
+			break;
+			
+		case 2:
+			
+			graphics.drawAnimation(this.animationBar5, bx, by);
+			
+			break;
+			
+		case 3:
+			
+			graphics.drawAnimation(this.animationBar4, bx, by);
+			
+			break;
+			
+		case 4:
+			
+			graphics.drawAnimation(this.animationBar3, bx, by);
+			
+			break;
+			
+		case 5:
+			
+			graphics.drawAnimation(this.animationBar2, bx, by);
+			
+			break;
+			
+		case 6:
+			
+			graphics.drawAnimation(this.animationBar1, bx, by);
+			
+			break;
 		}
 	}
 	
