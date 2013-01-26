@@ -39,6 +39,9 @@ public strictfp final class OldManAndTheDucksGame extends BasicGame {
 		this.componentManager.addComponent(
 				new Tree(this.componentManager.takeId()));
 		
+		this.componentManager.addComponent(
+				new Sun(this.componentManager.takeId()));
+		
 		this.componentManager.init(gameContainer);
 	}
 

@@ -95,8 +95,6 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 				this.eventBus.post(new BeatMissedEvent());
 			}
 			
-			this.timeTillNextSequence = Constants.TIME_PER_SEQUENCE;
-			
 			this.nextSequence();
 		}
 	}
@@ -176,6 +174,8 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 	
 	private void nextSequence() {
 		
+		this.timeTillNextSequence = Constants.TIME_PER_SEQUENCE;
+		
 		this.beatsRequired.clear();
 		
 		int numberOfBeats = 1 + this.random.nextInt(3);
@@ -228,6 +228,11 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		if (this.beatsRequired.contains(e.getBeat())) {
 			
 			this.beatsRequired.remove(e.getBeat());
+			
+			if (this.beatsRequired.isEmpty()) {
+				
+				this.nextSequence();
+			}
 		}
 		else {
 			
