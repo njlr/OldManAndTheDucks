@@ -24,7 +24,7 @@ public strictfp final class Sun extends BasicComponentRenderable {
 		super.init(gameContainer);
 		
 		this.animation = new Animation(new SpriteSheet("gfx/Sun.png", 256, 256), 100);
-		this.animation = new Animation(new SpriteSheet("gfx/Beams.png", 256, 256), 100);
+		this.animationBeams = new Animation(new SpriteSheet("gfx/Beams.png", 256, 256), 100);
 	}
 	
 	@Override

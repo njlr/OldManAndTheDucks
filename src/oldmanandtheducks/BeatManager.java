@@ -17,6 +17,7 @@ import com.google.common.eventbus.Subscribe;
 
 import oldmanandtheducks.events.BeatMissedEvent;
 import oldmanandtheducks.events.BeatPressedEvent;
+import oldmanandtheducks.events.GameOverEvent;
 
 public strictfp final class BeatManager extends BasicComponentRenderable {
 	
@@ -43,6 +44,8 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 	private boolean wrongBlue;
 	private boolean wrongYellow;
 	private boolean wrongGreen;
+	
+	private boolean isRunning;
 	
 	public BeatManager(long id, EventBus eventBus) {
 		
@@ -79,13 +82,15 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		this.wrongBlue = false;
 		this.wrongYellow = false;
 		this.wrongGreen = false;
+		
+		this.isRunning = true;
 	}
 	
 	@Override
 	public void update(GameContainer gameContainer, int delta) throws SlickException {
 		
 		super.update(gameContainer, delta);
-		
+			
 		this.timeTillNextSequence -= delta;
 		
 		if (this.timeTillNextSequence <= 0) {
@@ -96,6 +101,11 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 			}
 			
 			this.nextSequence();
+		}
+		
+		if (!this.isRunning) {
+			
+			this.destroy(gameContainer);
 		}
 	}
 	
@@ -265,5 +275,11 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 			
 			this.eventBus.post(new BeatMissedEvent());
 		}
+	}
+	
+	@Subscribe
+	public void handleGameOverEvent(GameOverEvent e) {
+		
+		this.isRunning = false;
 	}
 }

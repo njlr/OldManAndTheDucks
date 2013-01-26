@@ -2,6 +2,8 @@ package oldmanandtheducks;
 
 import nlib.components.ComponentManager;
 
+import oldmanandtheducks.events.GameStartEvent;
+
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -27,20 +29,13 @@ public strictfp final class OldManAndTheDucksGame extends BasicGame {
 	public void init(GameContainer gameContainer) throws SlickException {
 		
 		this.componentManager.addComponent(
-				new BeatManager(
-						this.componentManager.takeId(), 
-						this.componentManager.getEventBus()));
-		
-		this.componentManager.addComponent(
-				new Controller(
-						this.componentManager.takeId(), 
-						this.componentManager.getEventBus()));
-		
-		this.componentManager.addComponent(
 				new Tree(this.componentManager.takeId()));
 		
 		this.componentManager.addComponent(
 				new Sun(this.componentManager.takeId()));
+		
+		this.componentManager.addComponent(
+				new TitleBox(this.componentManager.takeId(), this.componentManager.getEventBus()));
 		
 		this.componentManager.init(gameContainer);
 	}
@@ -58,6 +53,20 @@ public strictfp final class OldManAndTheDucksGame extends BasicGame {
 		graphics.clear();
 		
 		this.componentManager.render(gameContainer, graphics);
+	}
+	
+	@Subscribe
+	public void handleGameStartEvent(GameStartEvent e) {
+		
+		this.componentManager.addComponent(
+				new BeatManager(
+						this.componentManager.takeId(), 
+						this.componentManager.getEventBus()));
+		
+		this.componentManager.addComponent(
+				new Controller(
+						this.componentManager.takeId(), 
+						this.componentManager.getEventBus()));
 	}
 	
 	@Subscribe
