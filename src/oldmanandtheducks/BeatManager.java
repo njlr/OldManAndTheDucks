@@ -32,10 +32,17 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 	private Animation animationYellow;
 	private Animation animationGreen;
 	
+	private Animation animationCross;
+	
 	private Animation animationRedBox;
 	private Animation animationBlueBox;
 	private Animation animationYellowBox;
 	private Animation animationGreenBox;
+	
+	private boolean wrongRed;
+	private boolean wrongBlue;
+	private boolean wrongYellow;
+	private boolean wrongGreen;
 	
 	public BeatManager(long id, EventBus eventBus) {
 		
@@ -45,6 +52,8 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		
 		this.random = new Random();
 		this.beatsRequired = new HashSet<Beat>();
+		
+		this.eventBus.register(this);
 	}
 	
 	@Override
@@ -54,15 +63,22 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		
 		this.timeTillNextSequence = Constants.TIME_PER_SEQUENCE;
 		
-		this.animationRed = new Animation(new SpriteSheet("gfx/Red.png", 96, 96), 495);
-		this.animationBlue = new Animation(new SpriteSheet("gfx/Blue.png", 96, 96), 500);
-		this.animationYellow = new Animation(new SpriteSheet("gfx/Yellow.png", 96, 96), 505);
-		this.animationGreen = new Animation(new SpriteSheet("gfx/Green.png", 96, 96), 510);
+		this.animationRed = new Animation(new SpriteSheet("gfx/Red.png", 96, 96), 100);
+		this.animationBlue = new Animation(new SpriteSheet("gfx/Blue.png", 96, 96), 100);
+		this.animationYellow = new Animation(new SpriteSheet("gfx/Yellow.png", 96, 96), 100);
+		this.animationGreen = new Animation(new SpriteSheet("gfx/Green.png", 96, 96), 100);
 		
-		this.animationRedBox = new Animation(new SpriteSheet("gfx/RedBox.png", 96, 96), 496);
-		this.animationBlueBox = new Animation(new SpriteSheet("gfx/BlueBox.png", 96, 96), 501);
-		this.animationYellowBox = new Animation(new SpriteSheet("gfx/YellowBox.png", 96, 96), 506);
-		this.animationGreenBox = new Animation(new SpriteSheet("gfx/GreenBox.png", 96, 96), 511);
+		this.animationCross = new Animation(new SpriteSheet("gfx/Cross.png", 96, 96), 100);
+		
+		this.animationRedBox = new Animation(new SpriteSheet("gfx/RedBox.png", 96, 96), 100);
+		this.animationBlueBox = new Animation(new SpriteSheet("gfx/BlueBox.png", 96, 96), 100);
+		this.animationYellowBox = new Animation(new SpriteSheet("gfx/YellowBox.png", 96, 96), 100);
+		this.animationGreenBox = new Animation(new SpriteSheet("gfx/GreenBox.png", 96, 96), 100);
+		
+		this.wrongRed = false;
+		this.wrongBlue = false;
+		this.wrongYellow = false;
+		this.wrongGreen = false;
 	}
 	
 	@Override
@@ -90,18 +106,72 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		
 		super.render(gameContainer, graphics);
 		
-		int w = gameContainer.getWidth();
-		int h = gameContainer.getHeight();
+		float w = 128f;
+		
+		float x = gameContainer.getScreenWidth() / 2f - w * 2f;
+		float y = gameContainer.getScreenHeight() - 128f;
 		
 		// Red
-		graphics.drawAnimation(this.animationRedBox, w - 128f * 2f, h - 128f);
+		graphics.drawAnimation(this.animationRedBox, x, y);
 		
 		if (this.beatsRequired.contains(Beat.RED)) {
 			
-			graphics.drawAnimation(this.animationRed, w - 128f * 2f, h - 128f);
+			graphics.drawAnimation(this.animationRed, x, y);
+		}
+		else if (this.wrongRed) {
+			
+			graphics.drawAnimation(this.animationCross, x, y);
 		}
 		
+		x += w;
 		
+		// Blue
+		graphics.drawAnimation(this.animationBlueBox, x, y);
+		
+		if (this.beatsRequired.contains(Beat.BLUE)) {
+			
+			graphics.drawAnimation(this.animationBlue, x, y);
+		}
+		else if (this.wrongBlue) {
+			
+			graphics.drawAnimation(this.animationCross, x, y);
+		}
+		
+		x += w;
+		
+		// Yellow
+		graphics.drawAnimation(this.animationYellowBox, x, y);
+		
+		if (this.beatsRequired.contains(Beat.YELLOW)) {
+			
+			graphics.drawAnimation(this.animationYellow, x, y);
+		}
+		else if (this.wrongYellow) {
+			
+			graphics.drawAnimation(this.animationCross, x, y);
+		}
+		
+		x += w;
+		
+		// Green
+		graphics.drawAnimation(this.animationGreenBox, x, y);
+		
+		if (this.beatsRequired.contains(Beat.GREEN)) {
+			
+			graphics.drawAnimation(this.animationGreen, x, y);
+		}
+		else if (this.wrongGreen) {
+			
+			graphics.drawAnimation(this.animationCross, x, y);
+		}
+	}
+	
+	@Override
+	public void destroy(GameContainer gameContainer) throws SlickException {
+		
+		super.destroy(gameContainer);
+		
+		this.eventBus.unregister(this);
 	}
 	
 	private void nextSequence() {
@@ -145,6 +215,11 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 				break;
 			}
 		}
+		
+		this.wrongRed = false;
+		this.wrongBlue = false;
+		this.wrongYellow = false;
+		this.wrongGreen = false;
 	}
 	
 	@Subscribe
@@ -155,6 +230,33 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 			this.beatsRequired.remove(e.getBeat());
 		}
 		else {
+			
+			switch (e.getBeat()) {
+			
+			case RED:
+				
+				this.wrongRed = true;
+				
+				break;
+				
+			case BLUE:
+				
+				this.wrongBlue = true;
+				
+				break;
+				
+			case YELLOW:
+				
+				this.wrongYellow = true;
+				
+				break;
+				
+			case GREEN:
+				
+				this.wrongGreen = true;
+				
+				break;
+			}
 			
 			this.eventBus.post(new BeatMissedEvent());
 		}

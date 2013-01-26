@@ -3,6 +3,7 @@ package oldmanandtheducks;
 import nlib.components.ComponentManager;
 
 import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -15,7 +16,7 @@ public strictfp final class OldManAndTheDucksGame extends BasicGame {
 	
 	public OldManAndTheDucksGame() {
 		
-		super("The Old Man and the Ducks");
+		super("The Old Man and The Ducks");
 		
 		this.componentManager = new ComponentManager();
 		
@@ -35,6 +36,9 @@ public strictfp final class OldManAndTheDucksGame extends BasicGame {
 						this.componentManager.takeId(), 
 						this.componentManager.getEventBus()));
 		
+		this.componentManager.addComponent(
+				new Tree(this.componentManager.takeId()));
+		
 		this.componentManager.init(gameContainer);
 	}
 
@@ -46,6 +50,9 @@ public strictfp final class OldManAndTheDucksGame extends BasicGame {
 	
 	@Override
 	public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
+		
+		graphics.setBackground(Color.white);
+		graphics.clear();
 		
 		this.componentManager.render(gameContainer, graphics);
 	}
