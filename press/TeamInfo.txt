@@ -1,4 +1,4 @@
-Team: NickAndRichard
+Team: TeamNickAndRichard
 
 Names: 'Nick La Rooy', 'Richard Cassidy'
 
