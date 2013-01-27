@@ -1,6 +1,6 @@
 package oldmanandtheducks;
 
-import oldmanandtheducks.events.BeatMissedEvent;
+import nlib.components.BasicComponentRenderable;
 import oldmanandtheducks.events.GameOverEvent;
 import oldmanandtheducks.events.SequenceDoneEvent;
 import oldmanandtheducks.events.SequenceFailedEvent;
@@ -14,8 +14,6 @@ import org.newdawn.slick.geom.Vector2f;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
-
-import nlib.components.BasicComponentRenderable;
 
 public strictfp final class OldMan extends BasicComponentRenderable {
 	
@@ -113,7 +111,7 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 			
 		case Dead:
 			
-			graphics.drawAnimation(this.animationDead, this.position.getX() + 48f, this.position.getY() + 32f);
+			graphics.drawAnimation(this.animationDead, this.position.getX() + 192f, this.position.getY() + 128f);
 			
 			break;
 		}
@@ -125,6 +123,12 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 		super.destroy(gameContainer);
 		
 		this.eventBus.unregister(this);
+	}
+	
+	@Override
+	public float getDepth() {
+		
+		return Constants.DEPTH_OLD_MAN;
 	}
 	
 	@Subscribe

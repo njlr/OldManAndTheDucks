@@ -4,23 +4,21 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import nlib.components.BasicComponentRenderable;
+import oldmanandtheducks.events.BeatMissedEvent;
+import oldmanandtheducks.events.BeatPressedEvent;
+import oldmanandtheducks.events.GameOverEvent;
+import oldmanandtheducks.events.SequenceDoneEvent;
+import oldmanandtheducks.events.SequenceFailedEvent;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
-import nlib.components.BasicComponentRenderable;
-
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
-import oldmanandtheducks.events.BeatMissedEvent;
-import oldmanandtheducks.events.BeatPressedEvent;
-import oldmanandtheducks.events.GameOverEvent;
-import oldmanandtheducks.events.SequenceDoneEvent;
-import oldmanandtheducks.events.SequenceFailedEvent;
 
 public strictfp final class BeatManager extends BasicComponentRenderable {
 	
@@ -192,6 +190,12 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		super.destroy(gameContainer);
 		
 		this.eventBus.unregister(this);
+	}
+	
+	@Override
+	public float getDepth() {
+		
+		return Constants.DEPTH_BEAT_MANAGER;
 	}
 	
 	private void nextSequence() {

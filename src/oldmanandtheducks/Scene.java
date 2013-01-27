@@ -32,4 +32,10 @@ public strictfp final class Scene extends BasicComponentRenderable {
 		
 		graphics.drawAnimation(this.animation, 0f, 0f);
 	}
+	
+	@Override
+	public float getDepth() {
+		
+		return Constants.DEPTH_SCENE;
+	}
 }

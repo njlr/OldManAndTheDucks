@@ -142,6 +142,12 @@ public strictfp final class TitleBox extends BasicComponentRenderable implements
 	}
 	
 	@Override
+	public float getDepth() {
+		
+		return Constants.DEPTH_TITLE_BOX;
+	}
+	
+	@Override
 	public void inputEnded() {
 		
 	}
