@@ -4,3 +4,7 @@ Extract zip and follow instructions inside.
 
 Tested in Ubuntu, should work everywhere. Requires Java 1.6+
 
+
+
+PRESS ESCAPE TO RESTART
+
