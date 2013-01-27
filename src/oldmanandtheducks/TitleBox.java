@@ -64,7 +64,7 @@ public strictfp final class TitleBox extends BasicComponentRenderable implements
 		this.animationYellowControl = new Animation(new SpriteSheet("gfx/YellowControl.png", 96, 48), 100);
 		this.animationGreenControl = new Animation(new SpriteSheet("gfx/GreenControl.png", 96, 48), 100);
 		
-		this.x = gameContainer.getScreenWidth() / 2f - 640f / 2f;
+		this.x = 1280 / 2f - 640f / 2f;
 		this.y = -770f;
 		
 		this.setInput(gameContainer.getInput());
@@ -109,7 +109,7 @@ public strictfp final class TitleBox extends BasicComponentRenderable implements
 		
 		float w = 128f;
 		
-		float xx = gameContainer.getScreenWidth() / 2f - w * 2f;
+		float xx = 1280 / 2f - w * 2f;
 		float yy = y + 296f;
 		
 		float hh = 96f;

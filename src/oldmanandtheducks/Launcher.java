@@ -18,14 +18,34 @@ public strictfp final class Launcher {
 		
 		Utils.linkLwjgl();
 		
+		int w;
+		int h;
+		
+		boolean b;
+		
+		if (args.length == 3) {
+			
+			w = Integer.parseInt(args[0]);
+			h = Integer.parseInt(args[1]);
+			
+			b = Boolean.parseBoolean(args[2]);
+		}
+		else {
+			
+			w = 1280;
+			h = 800;
+			
+			b = false;
+		}
+		
 		Game game = new OldManAndTheDucksGame();
 		
 		ScalableGame scalableGame = new ScalableGame(game, 1280, 800, true);
 		
 		AppGameContainer appGameContainer = new AppGameContainer(scalableGame);
 		
-		appGameContainer.setDisplayMode(1024, 640, false);
-		appGameContainer.setTargetFrameRate(60);
+		appGameContainer.setDisplayMode(w, h, b);
+		appGameContainer.setTargetFrameRate(30);
 		appGameContainer.setVSync(true);
 		appGameContainer.setShowFPS(false);
 		appGameContainer.setMouseGrabbed(true);

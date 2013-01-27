@@ -35,7 +35,7 @@ public strictfp final class Leaf extends BasicComponentRenderable {
 		
 		super.init(gameContainer);
 		
-		this.x = 256f + this.random.nextInt(gameContainer.getScreenWidth() + 256);
+		this.x = 256f + this.random.nextInt(1280 + 256);
 		this.y = -64f;
 		
 		String l;
@@ -85,7 +85,7 @@ public strictfp final class Leaf extends BasicComponentRenderable {
 		
 		this.x -= (0.2f * this.random.nextFloat() - 0.05f) * this.vx * delta;
 		
-		if (this.y > gameContainer.getScreenHeight() + 64f) {
+		if (this.y > 800 + 64f) {
 			
 			this.destroy(gameContainer);
 		}

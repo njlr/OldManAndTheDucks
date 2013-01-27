@@ -131,7 +131,7 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		
 		float w = 128f;
 		
-		float c = gameContainer.getScreenWidth() / 2f;
+		float c = 1280 / 2f;
 		
 		float x = c - w * 2f;
 		float y = 32f;
