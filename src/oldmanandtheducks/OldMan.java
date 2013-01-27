@@ -69,7 +69,7 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 			
 			this.position.y -= 0.1f * delta;
 			
-			if (this.position.y < -4096f) {
+			if (this.position.y < -2048f) {
 				
 				this.state = State.Dead;
 			}
@@ -107,6 +107,8 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 		case Pain:
 			
 			graphics.drawAnimation(this.animationPain, this.position.getX(), this.position.getY());
+			
+			break;
 			
 		case Flying:
 			
