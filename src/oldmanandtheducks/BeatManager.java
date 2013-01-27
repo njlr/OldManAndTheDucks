@@ -39,6 +39,8 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 	
 	private Animation animationBox;
 	
+	private Animation animationTimer;
+	
 	private boolean wrongRed;
 	private boolean wrongBlue;
 	private boolean wrongYellow;
@@ -80,6 +82,10 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		this.animationCross = new Animation(new SpriteSheet("gfx/Cross.png", 96, 96), 100);
 		
 		this.animationBox = new Animation(new SpriteSheet("gfx/Box.png", 96, 96), 100);
+		
+		this.animationTimer = new Animation(new SpriteSheet("gfx/Timer.png", 96, 96), 100);
+		
+		this.animationTimer.setAutoUpdate(false);
 		
 		this.wrongRed = false;
 		this.wrongBlue = false;
@@ -172,6 +178,16 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 			
 			graphics.drawAnimation(this.animationCross, x, y);
 		}
+		
+		x += w;
+		
+		// Timer
+		int n = ((this.timeBetweenSequences - this.timeTillNextSequence) * 
+				this.animationTimer.getFrameCount()) / this.timeBetweenSequences;
+		
+		this.animationTimer.setCurrentFrame(n);
+		
+		graphics.drawAnimation(this.animationTimer, x, y);
 	}
 	
 	@Override
