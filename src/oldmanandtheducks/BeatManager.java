@@ -15,6 +15,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.SpriteSheet;
 
 import com.google.common.eventbus.EventBus;
@@ -45,6 +46,11 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 	private boolean wrongBlue;
 	private boolean wrongYellow;
 	private boolean wrongGreen;
+	
+	private Sound soundRed;
+	private Sound soundBlue;
+	private Sound soundYellow;
+	private Sound soundGreen;
 	
 	private boolean isRunning;
 	
@@ -91,6 +97,11 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		this.wrongBlue = false;
 		this.wrongYellow = false;
 		this.wrongGreen = false;
+		
+		this.soundRed = new Sound("sfx/Beat1.ogg");
+		this.soundBlue = new Sound("sfx/Beat2.ogg");
+		this.soundYellow = new Sound("sfx/Beat3.ogg");
+		this.soundGreen = new Sound("sfx/Beat4.ogg");
 		
 		this.isRunning = true;
 	}
@@ -289,6 +300,33 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 	
 	@Subscribe
 	public void handleBeatPressedEvent(BeatPressedEvent e) {
+		
+		switch (e.getBeat()) {
+		
+		case RED:
+			
+			this.soundRed.play();
+			
+			break;
+			
+		case BLUE:
+			
+			this.soundBlue.play();
+			
+			break;
+			
+		case YELLOW:
+			
+			this.soundYellow.play();
+			
+			break;
+			
+		case GREEN:
+			
+			this.soundGreen.play();
+			
+			break;
+		}
 		
 		if (this.beatsRequired.contains(e.getBeat())) {
 			
