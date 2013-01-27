@@ -54,7 +54,7 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 		this.animation = new Animation(new SpriteSheet("gfx/OldMan.png", 164, 272), 100);
 		this.animationPain = new Animation(new SpriteSheet("gfx/OldManPain.png", 164, 272), 100);
 		this.animationDead = new Animation(new SpriteSheet("gfx/OldManDead.png", 272, 164), 100);
-		this.animationFlying = new Animation(new SpriteSheet("gfx/OldMainFlying.png", 164, 320), 100);
+		this.animationFlying = new Animation(new SpriteSheet("gfx/OldManFlying.png", 164, 320), 100);
 		// this.animationBoots = new Animation(new SpriteSheet("gfx/Boots.png", 164, 272), 100);
 	}
 	
