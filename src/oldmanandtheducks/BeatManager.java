@@ -69,6 +69,11 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		this.animationYellow = new Animation(new SpriteSheet("gfx/Yellow.png", 96, 96), 100);
 		this.animationGreen = new Animation(new SpriteSheet("gfx/Green.png", 96, 96), 100);
 		
+		this.animationRed.setLooping(false);
+		this.animationBlue.setLooping(false);
+		this.animationYellow.setLooping(false);
+		this.animationGreen.setLooping(false);
+		
 		this.animationCross = new Animation(new SpriteSheet("gfx/Cross.png", 96, 96), 100);
 		
 		this.animationBox = new Animation(new SpriteSheet("gfx/Box.png", 96, 96), 100);

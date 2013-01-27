@@ -36,7 +36,7 @@ public strictfp final class Scene extends BasicComponentRenderable {
 		
 		super.update(gameContainer, delta);
 		
-		this.x -= 0.001f * delta;
+		this.x -= 0.005f * delta;
 		
 		while (this.x < - this.animationCloud.getWidth()) {
 			
