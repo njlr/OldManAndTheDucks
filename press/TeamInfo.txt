@@ -1,0 +1,11 @@
+Team: NickAndRichard
+
+Names: 'Nick La Rooy', 'Richard Cassidy'
+
+Website: http://gamedevsoc.eusa.ed.ac.uk/
+
+globalgamejam.org Usernames: 'nlr', 'PureChance'
+
+Note: ALL art hand-drawn and scanned by us. Raw .jpgs not included due to size.
+
+Note: nlib library is written by us and available at https://github.com/nlr/nlib.git
