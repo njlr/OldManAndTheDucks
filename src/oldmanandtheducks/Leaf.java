@@ -19,11 +19,15 @@ public strictfp final class Leaf extends BasicComponentRenderable {
 	private float x;
 	private float y;
 	
+	private float vx;
+	
 	public Leaf(long id) {
 		
 		super(id);
 		
 		this.random = new Random();
+		
+		this.vx = 1f - this.random.nextFloat() * 0.01f;
 	}
 	
 	@Override
@@ -31,7 +35,7 @@ public strictfp final class Leaf extends BasicComponentRenderable {
 		
 		super.init(gameContainer);
 		
-		this.x = this.random.nextInt(gameContainer.getScreenWidth());
+		this.x = 256f + this.random.nextInt(gameContainer.getScreenWidth() + 256);
 		this.y = -64f;
 		
 		String l;
@@ -77,9 +81,9 @@ public strictfp final class Leaf extends BasicComponentRenderable {
 		
 		super.update(gameContainer, delta);
 		
-		this.y += 0.2f * delta;
+		this.y += 0.1f * this.random.nextFloat() * this.vx * delta;
 		
-		this.x -= 0.1f * this.random.nextFloat() * delta;
+		this.x -= (0.2f * this.random.nextFloat() - 0.05f) * this.vx * delta;
 		
 		if (this.y > gameContainer.getScreenHeight() + 64f) {
 			

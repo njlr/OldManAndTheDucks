@@ -41,7 +41,7 @@ public strictfp final class Leaves extends BasicComponent {
 		
 		for (int i = 0; i < delta; i++) {
 			
-			if (this.random.nextFloat() > 0.95f) {
+			if (this.random.nextFloat() > 0.9995f) {
 				
 				this.spawn();
 			}

@@ -90,24 +90,6 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		
 		if (this.timeTillNextSequence <= 0) {
 			
-			if (this.beatsRequired.isEmpty()) {
-				
-				if ((this.wrongRed) || (this.wrongBlue) || (this.wrongYellow) || (this.wrongGreen)) {
-					
-					this.eventBus.post(new SequenceFailedEvent());
-				}
-				else {
-					
-					this.eventBus.post(new SequenceDoneEvent());
-				}
-			}
-			else {
-				
-				this.eventBus.post(new BeatMissedEvent());
-				
-				this.eventBus.post(new SequenceFailedEvent());
-			}
-			
 			this.nextSequence();
 		}
 		
@@ -201,6 +183,24 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 	private void nextSequence() {
 		
 		this.timeTillNextSequence = Constants.TIME_PER_SEQUENCE;
+		
+		if (this.beatsRequired.isEmpty()) {
+			
+			if ((this.wrongRed) || (this.wrongBlue) || (this.wrongYellow) || (this.wrongGreen)) {
+				
+				this.eventBus.post(new SequenceFailedEvent());
+			}
+			else {
+				
+				this.eventBus.post(new SequenceDoneEvent());
+			}
+		}
+		else {
+			
+			this.eventBus.post(new BeatMissedEvent());
+			
+			this.eventBus.post(new SequenceFailedEvent());
+		}
 		
 		this.beatsRequired.clear();
 		

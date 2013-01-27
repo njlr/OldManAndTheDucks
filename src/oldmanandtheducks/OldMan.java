@@ -1,6 +1,7 @@
 package oldmanandtheducks;
 
 import nlib.components.BasicComponentRenderable;
+import nlib.components.ComponentManager;
 import oldmanandtheducks.events.GameOverEvent;
 import oldmanandtheducks.events.SequenceDoneEvent;
 import oldmanandtheducks.events.SequenceFailedEvent;
@@ -12,14 +13,13 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
-import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 
 public strictfp final class OldMan extends BasicComponentRenderable {
 	
 	private enum State { Healthy, Pain, Flying, Dead };
 	
-	private final EventBus eventBus;
+	private final ComponentManager componentManager;
 	
 	private final Vector2f startingPosition;
 	private final Vector2f position;
@@ -31,16 +31,16 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 	private Animation animationDead;
 	private Animation animationBoots;
 	
-	public OldMan(long id, EventBus eventBus, Vector2f position) {
+	public OldMan(long id, ComponentManager componentManager, Vector2f position) {
 		
 		super(id);
 		
-		this.eventBus = eventBus;
+		this.componentManager = componentManager;
 		
 		this.startingPosition = new Vector2f(position);
 		this.position = new Vector2f(position);
 		
-		this.eventBus.register(this);
+		this.componentManager.getEventBus().register(this);
 	}
 	
 	@Override
@@ -122,7 +122,7 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 		
 		super.destroy(gameContainer);
 		
-		this.eventBus.unregister(this);
+		this.componentManager.getEventBus().unregister(this);
 	}
 	
 	@Override
@@ -139,6 +139,13 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 		case Pain:
 			
 			this.state = State.Healthy;
+			
+		case Healthy:
+			
+			this.componentManager.addComponent(
+					new Heart(
+							this.componentManager.takeId(), 
+							new Vector2f(this.position.getX() + 82, this.position.getY())));
 			
 			break;
 		}
@@ -159,7 +166,7 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 			
 			this.state = State.Flying;
 			
-			this.eventBus.post(new GameOverEvent());
+			this.componentManager.getEventBus().post(new GameOverEvent());
 			
 			break;
 		}
