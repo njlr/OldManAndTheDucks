@@ -92,7 +92,7 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 		
 		super.render(gameContainer, graphics);
 		
-		graphics.drawAnimation(this.animationBoots, this.startingPosition.getX(), this.startingPosition.getY());
+		// graphics.drawAnimation(this.animationBoots, this.startingPosition.getX(), this.startingPosition.getY());
 		
 		switch (this.state) {
 		
