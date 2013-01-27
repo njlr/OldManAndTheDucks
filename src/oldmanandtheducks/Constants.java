@@ -9,7 +9,10 @@ public strictfp final class Constants {
 		super();
 	}
 	
-	public static final int TIME_PER_SEQUENCE = 2 * 1000;
+	public static final int MAX_TIME_PER_SEQUENCE = 2 * 1000;
+	public static final int MIN_TIME_PER_SEQUENCE = 100;
+	
+	public static final int TIME_DROP = 10;
 	
 	public static final int KEY_RED = Input.KEY_LCONTROL;
 	public static final int KEY_BLUE = Input.KEY_SPACE;

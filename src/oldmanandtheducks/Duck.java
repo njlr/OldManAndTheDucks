@@ -45,7 +45,14 @@ public strictfp final class Duck extends BasicComponentRenderable {
 		
 		super.init(gameContainer);
 		
-		this.animation = new Animation(new SpriteSheet("gfx/Ducky.png", 80, 48), 100);
+		if (this.random.nextBoolean()) {
+			
+			this.animation = new Animation(new SpriteSheet("gfx/Ducky.png", 80, 48), 100);
+		}
+		else {
+			
+			this.animation = new Animation(new SpriteSheet("gfx/Ducky2.png", 80, 48), 100);
+		}
 	}
 	
 	@Override

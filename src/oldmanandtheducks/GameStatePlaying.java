@@ -80,7 +80,7 @@ public strictfp final class GameStatePlaying extends BasicGameState {
 		
 		this.componentManager.update(gameContainer, delta);
 		
-		if (gameContainer.getInput().isKeyDown(Input.KEY_ESCAPE)) {
+		if (gameContainer.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
 			
 			stateBasedGame.enterState(ID);
 		}

@@ -27,6 +27,7 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 	private final Random random;
 	private final Set<Beat> beatsRequired;
 	
+	private int timeBetweenSequences;
 	private int timeTillNextSequence;
 	
 	private Animation animationRed;
@@ -62,7 +63,9 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		
 		super.init(gameContainer);
 		
-		this.timeTillNextSequence = Constants.TIME_PER_SEQUENCE;
+		this.timeBetweenSequences = Constants.MAX_TIME_PER_SEQUENCE;
+		
+		this.timeTillNextSequence = this.timeBetweenSequences;
 		
 		this.animationRed = new Animation(new SpriteSheet("gfx/Red.png", 96, 96), 100);
 		this.animationBlue = new Animation(new SpriteSheet("gfx/Blue.png", 96, 96), 100);
@@ -187,7 +190,17 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 	
 	private void nextSequence() {
 		
-		this.timeTillNextSequence = Constants.TIME_PER_SEQUENCE;
+		if (this.timeBetweenSequences > Constants.MIN_TIME_PER_SEQUENCE) {
+			
+			this.timeBetweenSequences -= Constants.TIME_DROP;
+			
+			if (this.timeBetweenSequences < Constants.MIN_TIME_PER_SEQUENCE) {
+				
+				this.timeBetweenSequences = Constants.MIN_TIME_PER_SEQUENCE;
+			}
+		}
+		
+		this.timeTillNextSequence = timeBetweenSequences;
 		
 		if (this.beatsRequired.isEmpty()) {
 			
@@ -251,6 +264,11 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		this.wrongBlue = false;
 		this.wrongYellow = false;
 		this.wrongGreen = false;
+		
+		this.animationRed.restart();
+		this.animationBlue.restart();
+		this.animationYellow.restart();
+		this.animationGreen.restart();
 	}
 	
 	@Subscribe
