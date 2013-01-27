@@ -29,7 +29,7 @@ public strictfp final class OldManAndTheDucksGame extends BasicGame {
 	public void init(GameContainer gameContainer) throws SlickException {
 		
 		this.componentManager.addComponent(
-				new Sky(this.componentManager.takeId()));
+				new Background(this.componentManager.takeId()));
 		
 		this.componentManager.addComponent(
 				new Pond(this.componentManager.takeId()));

@@ -24,7 +24,7 @@ public strictfp final class Launcher {
 		
 		AppGameContainer appGameContainer = new AppGameContainer(scalableGame);
 		
-		appGameContainer.setDisplayMode(1024, 600, false);
+		appGameContainer.setDisplayMode(1280, 800, true);
 		appGameContainer.setTargetFrameRate(60);
 		appGameContainer.setVSync(true);
 		
