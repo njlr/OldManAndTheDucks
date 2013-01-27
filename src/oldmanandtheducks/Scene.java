@@ -49,8 +49,8 @@ public strictfp final class Scene extends BasicComponentRenderable {
 		
 		super.render(gameContainer, graphics);
 		
-		graphics.drawAnimation(this.animationCloud, this.x, 0f);
-		graphics.drawAnimation(this.animationCloud, this.x + this.animationCloud.getWidth(), 0f);
+		graphics.drawAnimation(this.animationCloud, (int) this.x, 0f);
+		graphics.drawAnimation(this.animationCloud, (int) this.x + this.animationCloud.getWidth(), 0f);
 		
 		graphics.drawAnimation(this.animation, 0f, 0f);
 	}

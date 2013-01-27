@@ -89,6 +89,7 @@ public strictfp final class GameStatePlaying extends BasicGameState {
 	@Override
 	public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 		
+		graphics.setAntiAlias(false);
 		graphics.setBackground(Color.white);
 		graphics.clear();
 		

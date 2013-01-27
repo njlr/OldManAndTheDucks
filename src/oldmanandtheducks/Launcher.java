@@ -28,6 +28,7 @@ public strictfp final class Launcher {
 		appGameContainer.setTargetFrameRate(60);
 		appGameContainer.setVSync(true);
 		appGameContainer.setShowFPS(false);
+		appGameContainer.setMouseGrabbed(true);
 		
 		appGameContainer.start();
 	}

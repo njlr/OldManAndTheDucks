@@ -29,6 +29,7 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 	private Animation animation;
 	private Animation animationPain;
 	private Animation animationDead;
+	private Animation animationFlying;
 	// private Animation animationBoots;
 	
 	public OldMan(long id, ComponentManager componentManager, Vector2f position) {
@@ -53,6 +54,7 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 		this.animation = new Animation(new SpriteSheet("gfx/OldMan.png", 164, 272), 100);
 		this.animationPain = new Animation(new SpriteSheet("gfx/OldManPain.png", 164, 272), 100);
 		this.animationDead = new Animation(new SpriteSheet("gfx/OldManDead.png", 272, 164), 100);
+		this.animationFlying = new Animation(new SpriteSheet("gfx/OldMainFlying.png", 164, 320), 100);
 		// this.animationBoots = new Animation(new SpriteSheet("gfx/Boots.png", 164, 272), 100);
 	}
 	
@@ -65,7 +67,7 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 		
 		case Flying:
 			
-			this.position.y -= 1f * delta;
+			this.position.y -= 0.1f * delta;
 			
 			if (this.position.y < -4096f) {
 				
@@ -103,9 +105,12 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 			break;
 			
 		case Pain:
-		case Flying:
 			
 			graphics.drawAnimation(this.animationPain, this.position.getX(), this.position.getY());
+			
+		case Flying:
+			
+			graphics.drawAnimation(this.animationFlying, this.position.getX(), this.position.getY() - 48f);
 			
 			break;
 			
