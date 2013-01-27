@@ -1,5 +1,7 @@
 package oldmanandtheducks;
 
+import java.util.Random;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -11,9 +13,11 @@ import nlib.components.BasicComponentRenderable;
 
 public strictfp final class Duck extends BasicComponentRenderable {
 	
-	private static final float SPEED = 0.1f;
+	private static final float SPEED = 0.001f;
 	
 	private final Vector2f position;
+	
+	private final Random random;
 	
 	private Animation animation;
 	
@@ -28,8 +32,12 @@ public strictfp final class Duck extends BasicComponentRenderable {
 		
 		this.position = new Vector2f(position);
 		
+		this.random = new Random();
+		
 		this.minY = this.position.getY() - 4f;
 		this.maxY = this.position.getY() + 4f;
+		
+		this.position.y = this.minY + this.random.nextFloat() * (this.maxY - this.minY);
 	}
 	
 	@Override
