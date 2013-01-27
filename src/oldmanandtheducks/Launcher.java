@@ -20,13 +20,14 @@ public strictfp final class Launcher {
 		
 		Game game = new OldManAndTheDucksGame();
 		
-		ScalableGame scalableGame = new ScalableGame(game, 1024, 640, false);
+		ScalableGame scalableGame = new ScalableGame(game, 1280, 800, true);
 		
 		AppGameContainer appGameContainer = new AppGameContainer(scalableGame);
 		
-		appGameContainer.setDisplayMode(1280, 800, true);
+		appGameContainer.setDisplayMode(1024, 640, false);
 		appGameContainer.setTargetFrameRate(60);
 		appGameContainer.setVSync(true);
+		appGameContainer.setShowFPS(false);
 		
 		appGameContainer.start();
 	}

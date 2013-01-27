@@ -1,6 +1,7 @@
 package oldmanandtheducks;
 
 import oldmanandtheducks.events.BeatMissedEvent;
+import oldmanandtheducks.events.GameOverEvent;
 import oldmanandtheducks.events.SequenceDoneEvent;
 import oldmanandtheducks.events.SequenceFailedEvent;
 
@@ -28,6 +29,7 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 	private State state;
 	
 	private Animation animation;
+	private Animation animationPain;
 	private Animation animationDead;
 	private Animation animationBoots;
 	
@@ -51,7 +53,8 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 		this.state = State.Healthy;
 		
 		this.animation = new Animation(new SpriteSheet("gfx/OldMan.png", 164, 272), 100);
-		this.animationDead = new Animation(new SpriteSheet("gfx/OldManDead.png", tw, th), 100);
+		this.animationPain = new Animation(new SpriteSheet("gfx/OldManPain.png", 164, 272), 100);
+		this.animationDead = new Animation(new SpriteSheet("gfx/OldManDead.png", 272, 164), 100);
 		this.animationBoots = new Animation(new SpriteSheet("gfx/Boots.png", 164, 272), 100);
 	}
 	
@@ -66,7 +69,7 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 			
 			this.position.y -= 1f * delta;
 			
-			if (this.position.y < -2048f) {
+			if (this.position.y < -4096f) {
 				
 				this.state = State.Dead;
 			}
@@ -96,16 +99,21 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 		switch (this.state) {
 		
 		case Healthy:
-		case Pain:
-		case Flying:
 			
 			graphics.drawAnimation(this.animation, this.position.getX(), this.position.getY());
 			
 			break;
 			
+		case Pain:
+		case Flying:
+			
+			graphics.drawAnimation(this.animationPain, this.position.getX(), this.position.getY());
+			
+			break;
+			
 		case Dead:
 			
-			graphics.drawAnimation(this.animationDead, this.position.getX(), this.position.getY());
+			graphics.drawAnimation(this.animationDead, this.position.getX() + 48f, this.position.getY() + 32f);
 			
 			break;
 		}
@@ -146,6 +154,8 @@ public strictfp final class OldMan extends BasicComponentRenderable {
 		case Pain:
 			
 			this.state = State.Flying;
+			
+			this.eventBus.post(new GameOverEvent());
 			
 			break;
 		}
