@@ -5,6 +5,8 @@
 	<classpathentry kind="lib" path="lib/guava-12.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/lwjgl.jar"/>
 	<classpathentry kind="lib" path="lib/slick.jar"/>
+	<classpathentry kind="lib" path="lib/jogg-0.0.7.jar"/>
+	<classpathentry kind="lib" path="lib/jorbis-0.0.15.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/nlib"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

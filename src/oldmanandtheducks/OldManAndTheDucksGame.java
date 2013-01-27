@@ -2,6 +2,7 @@ package oldmanandtheducks;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.StateBasedGame;
 
 public strictfp final class OldManAndTheDucksGame extends StateBasedGame {
@@ -13,6 +14,8 @@ public strictfp final class OldManAndTheDucksGame extends StateBasedGame {
 
 	@Override
 	public void initStatesList(GameContainer gameContainer) throws SlickException {
+		
+		new Sound("sfx/Music.ogg").loop();
 		
 		this.addState(new GameStatePlaying());
 		
