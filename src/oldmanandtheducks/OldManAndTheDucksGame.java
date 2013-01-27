@@ -15,7 +15,7 @@ public strictfp final class OldManAndTheDucksGame extends StateBasedGame {
 	@Override
 	public void initStatesList(GameContainer gameContainer) throws SlickException {
 		
-		new Sound("sfx/Music.ogg").loop();
+		new Sound("sfx/Music.ogg").loop(1f, 0.1f);
 		
 		this.addState(new GameStatePlaying());
 		
