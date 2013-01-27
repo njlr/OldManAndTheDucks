@@ -17,7 +17,7 @@ import nlib.components.BasicComponentRenderable;
 public strictfp final class TitleBox extends BasicComponentRenderable implements KeyListener {
 	
 	private static final float SPEED = 1f;
-	private static final float TARGET_Y = 32f;
+	private static final float TARGET_Y = 128f;
 	
 	private final EventBus eventBus;
 	
@@ -52,7 +52,7 @@ public strictfp final class TitleBox extends BasicComponentRenderable implements
 		
 		super.init(gameContainer);
 		
-		this.animation = new Animation(new SpriteSheet("gfx/TitleBox.png", 1024, 770), 100);
+		this.animation = new Animation(new SpriteSheet("gfx/TitleBox.png", 640, 480), 100);
 		
 		this.animationRed = new Animation(new SpriteSheet("gfx/Red.png", 96, 96), 100);
 		this.animationBlue = new Animation(new SpriteSheet("gfx/Blue.png", 96, 96), 100);
@@ -64,7 +64,7 @@ public strictfp final class TitleBox extends BasicComponentRenderable implements
 		this.animationYellowControl = new Animation(new SpriteSheet("gfx/YellowControl.png", 96, 48), 100);
 		this.animationGreenControl = new Animation(new SpriteSheet("gfx/GreenControl.png", 96, 48), 100);
 		
-		this.x = gameContainer.getScreenWidth() / 2f - 1024f / 2f;
+		this.x = gameContainer.getScreenWidth() / 2f - 640f / 2f;
 		this.y = -770f;
 		
 		this.setInput(gameContainer.getInput());
@@ -79,7 +79,7 @@ public strictfp final class TitleBox extends BasicComponentRenderable implements
 			
 			this.y -= SPEED * delta;
 			
-			if (y < -770f) {
+			if (y < -480f) {
 				
 				this.eventBus.post(new GameStartEvent());
 				
@@ -110,7 +110,7 @@ public strictfp final class TitleBox extends BasicComponentRenderable implements
 		float w = 128f;
 		
 		float xx = gameContainer.getScreenWidth() / 2f - w * 2f;
-		float yy = y + 512f;
+		float yy = y + 296f;
 		
 		float hh = 96f;
 		

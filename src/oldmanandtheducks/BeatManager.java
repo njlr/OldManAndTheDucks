@@ -14,10 +14,13 @@ import nlib.components.BasicComponentRenderable;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import oldmanandtheducks.events.BeatMissedEvent;
 import oldmanandtheducks.events.BeatPressedEvent;
 import oldmanandtheducks.events.GameOverEvent;
+import oldmanandtheducks.events.SequenceDoneEvent;
+import oldmanandtheducks.events.SequenceFailedEvent;
 
 public strictfp final class BeatManager extends BasicComponentRenderable {
 	
@@ -89,9 +92,22 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		
 		if (this.timeTillNextSequence <= 0) {
 			
-			if (!this.beatsRequired.isEmpty()) {
+			if (this.beatsRequired.isEmpty()) {
+				
+				if ((this.wrongRed) || (this.wrongBlue) || (this.wrongYellow) || (this.wrongGreen)) {
+					
+					this.eventBus.post(new SequenceFailedEvent());
+				}
+				else {
+					
+					this.eventBus.post(new SequenceDoneEvent());
+				}
+			}
+			else {
 				
 				this.eventBus.post(new BeatMissedEvent());
+				
+				this.eventBus.post(new SequenceFailedEvent());
 			}
 			
 			this.nextSequence();
