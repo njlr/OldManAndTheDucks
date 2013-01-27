@@ -35,24 +35,12 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 	
 	private Animation animationCross;
 	
-	private Animation animationRedBox;
-	private Animation animationBlueBox;
-	private Animation animationYellowBox;
-	private Animation animationGreenBox;
+	private Animation animationBox;
 	
 	private boolean wrongRed;
 	private boolean wrongBlue;
 	private boolean wrongYellow;
 	private boolean wrongGreen;
-	
-	private Animation animationBarBackground;
-	
-	private Animation animationBar1;
-	private Animation animationBar2;
-	private Animation animationBar3;
-	private Animation animationBar4;
-	private Animation animationBar5;
-	private Animation animationBar6;
 	
 	private boolean isRunning;
 	
@@ -82,24 +70,12 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		
 		this.animationCross = new Animation(new SpriteSheet("gfx/Cross.png", 96, 96), 100);
 		
-		this.animationRedBox = new Animation(new SpriteSheet("gfx/RedBox.png", 96, 96), 100);
-		this.animationBlueBox = new Animation(new SpriteSheet("gfx/BlueBox.png", 96, 96), 100);
-		this.animationYellowBox = new Animation(new SpriteSheet("gfx/YellowBox.png", 96, 96), 100);
-		this.animationGreenBox = new Animation(new SpriteSheet("gfx/GreenBox.png", 96, 96), 100);
+		this.animationBox = new Animation(new SpriteSheet("gfx/Box.png", 96, 96), 100);
 		
 		this.wrongRed = false;
 		this.wrongBlue = false;
 		this.wrongYellow = false;
 		this.wrongGreen = false;
-		
-		this.animationBarBackground = new Animation(new SpriteSheet("gfx/BarBackground.png", 512, 128), 100);
-		
-		this.animationBar1 = new Animation(new SpriteSheet("gfx/Bar1.png", 512, 128), 100);
-		this.animationBar2 = new Animation(new SpriteSheet("gfx/Bar2.png", 512, 128), 100);
-		this.animationBar3 = new Animation(new SpriteSheet("gfx/Bar3.png", 512, 128), 100);
-		this.animationBar4 = new Animation(new SpriteSheet("gfx/Bar4.png", 512, 128), 100);
-		this.animationBar5 = new Animation(new SpriteSheet("gfx/Bar5.png", 512, 128), 100);
-		this.animationBar6 = new Animation(new SpriteSheet("gfx/Bar6.png", 512, 128), 100);
 		
 		this.isRunning = true;
 	}
@@ -137,10 +113,10 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		float c = gameContainer.getScreenWidth() / 2f;
 		
 		float x = c - w * 2f;
-		float y = gameContainer.getScreenHeight() - 128f;
+		float y = 32f;
 		
 		// Red
-		graphics.drawAnimation(this.animationRedBox, x, y);
+		graphics.drawAnimation(this.animationBox, x, y);
 		
 		if (this.beatsRequired.contains(Beat.RED)) {
 			
@@ -154,7 +130,7 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		x += w;
 		
 		// Blue
-		graphics.drawAnimation(this.animationBlueBox, x, y);
+		graphics.drawAnimation(this.animationBox, x, y);
 		
 		if (this.beatsRequired.contains(Beat.BLUE)) {
 			
@@ -168,7 +144,7 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		x += w;
 		
 		// Yellow
-		graphics.drawAnimation(this.animationYellowBox, x, y);
+		graphics.drawAnimation(this.animationBox, x, y);
 		
 		if (this.beatsRequired.contains(Beat.YELLOW)) {
 			
@@ -182,7 +158,7 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 		x += w;
 		
 		// Green
-		graphics.drawAnimation(this.animationGreenBox, x, y);
+		graphics.drawAnimation(this.animationBox, x, y);
 		
 		if (this.beatsRequired.contains(Beat.GREEN)) {
 			
@@ -192,54 +168,6 @@ public strictfp final class BeatManager extends BasicComponentRenderable {
 			
 			graphics.drawAnimation(this.animationCross, x, y);
 		}
-		
-		/*
-		// Bar
-		float bx = c - 256f;
-		float by = gameContainer.getScreenHeight() - 256f;
-		
-		graphics.drawAnimation(this.animationBarBackground, bx, by);
-		
-		int f = (this.timeTillNextSequence * 6) / Constants.TIME_PER_SEQUENCE;
-		
-		switch (f) {
-		
-		case 1:
-			
-			graphics.drawAnimation(this.animationBar6, bx, by);
-			
-			break;
-			
-		case 2:
-			
-			graphics.drawAnimation(this.animationBar5, bx, by);
-			
-			break;
-			
-		case 3:
-			
-			graphics.drawAnimation(this.animationBar4, bx, by);
-			
-			break;
-			
-		case 4:
-			
-			graphics.drawAnimation(this.animationBar3, bx, by);
-			
-			break;
-			
-		case 5:
-			
-			graphics.drawAnimation(this.animationBar2, bx, by);
-			
-			break;
-			
-		case 6:
-			
-			graphics.drawAnimation(this.animationBar1, bx, by);
-			
-			break;
-		}*/
 	}
 	
 	@Override

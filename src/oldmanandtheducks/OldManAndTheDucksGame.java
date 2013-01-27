@@ -9,6 +9,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 
 import com.google.common.eventbus.Subscribe;
 
@@ -29,16 +30,13 @@ public strictfp final class OldManAndTheDucksGame extends BasicGame {
 	public void init(GameContainer gameContainer) throws SlickException {
 		
 		this.componentManager.addComponent(
-				new Background(this.componentManager.takeId()));
+				new Scene(this.componentManager.takeId()));
 		
 		this.componentManager.addComponent(
-				new Pond(this.componentManager.takeId()));
-		
-		this.componentManager.addComponent(
-				new Tree(this.componentManager.takeId()));
-		
-		this.componentManager.addComponent(
-				new Sun(this.componentManager.takeId()));
+				new OldMan(
+						this.componentManager.takeId(), 
+						this.componentManager.getEventBus(), 
+						new Vector2f(635f, 446f)));
 		
 		this.componentManager.addComponent(
 				new TitleBox(
