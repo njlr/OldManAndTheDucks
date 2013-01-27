@@ -6,6 +6,12 @@ Website: http://gamedevsoc.eusa.ed.ac.uk/
 
 globalgamejam.org Usernames: 'nlr', 'PureChance'
 
+Diversifiers: 
+1. Stay Inside The Box
+9. More the Merrier
+12. Approved for All Audiences
+13. Inclusive(One button per player)
+
 Note: ALL art hand-drawn and scanned by us. Raw .jpgs not included due to size.
 
 Note: nlib library is written by us and available at https://github.com/nlr/nlib.git
